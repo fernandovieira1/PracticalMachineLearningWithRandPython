@@ -6,6 +6,7 @@
 # - KNN
 import os
 os.chdir("/Users/fernandovieira/OneDrive/1. Educacao/INFO E ESTAT/RAIZ_Livro_ML_Tinnian_Ganesh/PracticalMachineLearningWithRandPython/Chapter4-RegressionofAContinuousVariable")
+os.chdir("C:/Users/70485992191/OneDrive/1. Educacao/INFO E ESTAT/RAIZ_Livro_ML_Tinnian_Ganesh/PracticalMachineLearningWithRandPython-2/Chapter4-RegressionofAContinuousVariable")
 os.getcwd()
 os.listdir()
 
@@ -16,8 +17,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 ## Ler os dados
-df = pd.read_csv("Boston.csv", encoding="ISO-8859-1") # Considerando o pacote "RFunctions.R", o nome do data frame sempre deve ser 'df'
-
+df = pd.read_csv("Boston.csv") # Considerando o pacote "RFunctions.R", o nome do data frame sempre deve ser 'df'
+df
 df.columns # https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html
 
 ### REGRESSÃO SIMPLES
