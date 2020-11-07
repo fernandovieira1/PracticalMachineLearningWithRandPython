@@ -15,11 +15,13 @@ head(df)
 tail(df)
 
 names(df) # https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html
+nrow(df)
 
 ### REGRESSÃO SIMPLES
 ## Dividir os dados entre dados de treino e de teste (75, 25)
 treino_idx <- trainTestSplit(df, trainPercent=75, seed=5) # Função importada de "RFunctions.R"
-treino_idx
+treino_idx # não entendi de qual colunas se extraiu os dados
+length(treino_idx)
 
 treino <- df[treino_idx,]
 teste <- df[-treino_idx,]
