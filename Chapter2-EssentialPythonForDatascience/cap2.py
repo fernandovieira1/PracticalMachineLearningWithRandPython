@@ -5,11 +5,9 @@ os.chdir("/Users/fernandovieira/OneDrive/1. Educacao/INFO E ESTAT/RAIZ_Livro_ML_
 os.getcwd()
 os.listdir()
 
-
 import pandas as pd
 tendulkar = pd.read_csv("tendulkar1.csv", encoding="ISO-8859-1")
 tendulkar
-
 
 ## Operações lambda
 a =[5,2,3,1,7]
