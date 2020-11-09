@@ -88,3 +88,5 @@ rsquared <- Rsquared(linreg, teste, teste$ViolentCrimesPerPop)
 rsquared
 
 sprintf("R quadrado para regressão linear múltipla (crimes.csv)  é : %f", rsquared)
+
+# Parei aqui no mac em 08112020
