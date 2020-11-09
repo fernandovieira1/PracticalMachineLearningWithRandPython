@@ -56,10 +56,12 @@ crimesDF1 <- crimesDF[,7:length(crimesDF)]
 
 # Converter todos para numérico
 crimesDF2 <- sapply(crimesDF1, as.numeric)
-crimesDF2
+head(crimesDF2)
+tail(crimesDF2)
 
 # Procurar por NAs
 a <- is.na(crimesDF2)
+a
 
 # Substituir NAs por 0
 crimesDF2[a] <- 0
@@ -84,3 +86,5 @@ summary(linreg, digits=3)
 
 rsquared <- Rsquared(linreg, teste, teste$ViolentCrimesPerPop)
 rsquared
+
+sprintf("R quadrado para regressão linear múltipla (crimes.csv)  é : %f", rsquared)
