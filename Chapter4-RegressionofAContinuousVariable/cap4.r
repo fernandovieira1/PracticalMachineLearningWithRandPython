@@ -89,4 +89,6 @@ rsquared
 
 sprintf("R quadrado para regressão linear múltipla (crimes.csv)  é : %f", rsquared)
 
-# Parei aqui no mac em 08112020
+### 1.4c K Nearest Neighbors Regression – R( Normalized)
+Ganesh, Tinniam V. Practical Machine Learning with R and Python: Machine Learning in Stereo (p. 103). Edição do Kindle. 
+
