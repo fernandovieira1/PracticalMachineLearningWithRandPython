@@ -92,6 +92,8 @@ sprintf("R quadrado para regressão linear múltipla (crimes.csv)  é : %f", rs
 ### 1.4c K Nearest Neighbors Regression – R( Normalized)
 Ganesh, Tinniam V. Practical Machine Learning with R and Python: Machine Learning in Stereo (p. 103). Edição do Kindle. 
 
+# Objetivo: encontrar a potência do carro (mpg) de acordo com as características ( cylinder, horsepower etc.)
+
 df <- read.csv("auto_mpg.csv")
 head(df)
 tail(df)
@@ -107,3 +109,45 @@ tail(df2)
 df3 <- df2[complete.cases(df2),] # mantém apenas as linhas sem NA
 head(df3)
 tail(df3)
+
+## Split and train
+train_idx <- trainTestSplit(df3, trainPercent=75, seed=5)
+
+train <- df3[train_idx,]
+dim(train)
+
+test <- df3[-train_idx,]
+dim(test)
+
+train.X <- train[,1:6] # feature
+train.Y <- train[,7] # target
+
+test.X <- test[,1:6] # feature
+test.Y <- test[,7] # target
+
+# Perform MinMaxScaling of feature variables (normalizar os dados para ficarem entre 0 e 1)
+train.X.scaled <- MinMaxScaler(train.X)
+test.X.scaled <- MinMaxScaler(test.X)
+
+# Create a list of neighbors
+rsquared <- NULL
+neighbors <- c(1,2,4,6,8,10,12,15,20,25,30)
+
+for(i in seq_along(neighbors)){
+    # Fit a KNN model
+    knn = knn.reg(train.X.scaled,test.X.scaled,train.Y,k=i)
+    # Compute R ssquared
+    rsquared[i] = knnRSquared(knn$pred,test.Y)
+}
+
+df <- data.frame(neighbors,Rsquared=rsquared)
+df
+
+# Plot the number of neighors vs the R squared
+ggplot(df,aes(x=neighbors,y=Rsquared)) + 
+geom_point() + 
+geom_line(color="blue") + 
+xlab("Number of neighbors") + 
+ylab("R squared") + 
+ggtitle("KNN regression - R squared vs Number of Neighors(Normalized)")
+

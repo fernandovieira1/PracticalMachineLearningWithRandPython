@@ -71,10 +71,10 @@ crimesDF.columns # https://rpubs.com/ksakwa/470184
 # Remover as 7 primeiras colunas
 crimesDF1 = crimesDF.iloc[:,7:crimesDF.shape[1]]
 
-# Convert to numeric  
-crimesDF2 = crimesDF1.apply(pd.to_numeric, errors='coerce')  
+# Convert to numeric
+crimesDF2 = crimesDF1.apply(pd.to_numeric, errors='coerce')
 
-# Impute NA to 0s  
+# Impute NA to 0s
 crimesDF2.fillna(0, inplace=True)
 
 # Selecionar y e x
@@ -98,3 +98,67 @@ r2Treino
 
 r2Teste = linreg.score(X_teste, y_teste)
 r2Teste
+
+### 1.4c K Nearest Neighbors Regression – R( Normalized)
+Ganesh, Tinniam V. Practical Machine Learning with R and Python: Machine Learning in Stereo (p. 105). Edição do Kindle.
+
+# Objetivo: encontrar a potência do carro (mpg) de acordo com as características ( cylinder, horsepower etc.)
+
+import numpy as np
+import pandas as pd
+import os
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.preprocessing import MinMaxScaler
+
+autoDF = pd.read_csv("auto_mpg.csv",encoding="ISO-8859-1")
+autoDF.shape
+autoDF.columns
+
+autoDF1 = autoDF[['mpg','cylinder','displacement','horsepower','weight','acceleration','year']]
+
+autoDF2 = autoDF1.apply(pd.to_numeric, errors='coerce')
+
+autoDF3 = autoDF2.dropna()
+autoDF3.shape
+
+X = autoDF3[['cylinder','displacement','horsepower','weight','acceleration','year']]
+y = autoDF3['mpg']
+
+# Perform a train/ testsplit
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 0)
+
+# Use MinMaxScaling
+scaler = MinMaxScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+
+# Apply scaling on test set
+X_test_scaled = scaler.transform(X_test)
+
+# Create a list of neighbors
+rsquared=[]
+neighbors=[1,2,4,6,8,10,12,15,20,25,30]
+
+for i in neighbors:
+    # Fit a KNN model
+    knnreg = KNeighborsRegressor(n_neighbors = i).fit(X_train_scaled, y_train)
+    # Compute R squared
+    rsquared.append(knnreg.score(X_test_scaled, y_test))
+    print('R-squared test score: {:.3f}'.format(knnreg.score(X_test_scaled, y_test)))
+    
+# Plot the number of neighors vs the R squared
+fig4=plt.plot(neighbors,rsquared)
+fig4=plt.title("KNN regression - R squared vs Number of neighbors(Normalized)")
+fig4=plt.xlabel("Neighbors")
+fig4=plt.ylabel("R squared")
+fig4.figure.savefig('foo4.png', bbox_inches='tight')
+plt.show()
+print("Finished plotting and saving")
+
+## R-squared test score: 0.703
+## R-squared test score: 0.810
+## R-squared test score: 0.830
+
