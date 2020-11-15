@@ -92,3 +92,18 @@ sprintf("R quadrado para regressão linear múltipla (crimes.csv)  é : %f", rs
 ### 1.4c K Nearest Neighbors Regression – R( Normalized)
 Ganesh, Tinniam V. Practical Machine Learning with R and Python: Machine Learning in Stereo (p. 103). Edição do Kindle. 
 
+df <- read.csv("auto_mpg.csv")
+head(df)
+tail(df)
+
+df1 <- as.data.frame(sapply(df, as.numeric))
+head(df1)
+tail(df1)
+
+df2 <- df1 %>% select(cylinder,displacement, horsepower,weight, acceleration, year,mpg)
+head(df2)
+tail(df2)
+
+df3 <- df2[complete.cases(df2),] # mantém apenas as linhas sem NA
+head(df3)
+tail(df3)
