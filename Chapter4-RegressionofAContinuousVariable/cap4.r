@@ -92,8 +92,11 @@ sprintf("R quadrado para regressão linear múltipla (crimes.csv)  é : %f", rs
 ### 1.4c K Nearest Neighbors Regression – R( Normalized)
 Ganesh, Tinniam V. Practical Machine Learning with R and Python: Machine Learning in Stereo (p. 103). Edição do Kindle. 
 
+<<<<<<< HEAD
 # Objetivo: encontrar a potência do carro (mpg) de acordo com as características ( cylinder, horsepower etc.)
 
+=======
+>>>>>>> 499b5dae9aac4d680335f9a32d5737c88cee216d
 df <- read.csv("auto_mpg.csv")
 head(df)
 tail(df)
@@ -108,6 +111,7 @@ tail(df2)
 
 df3 <- df2[complete.cases(df2),] # mantém apenas as linhas sem NA
 head(df3)
+<<<<<<< HEAD
 tail(df3)
 
 ## Split and train
@@ -151,3 +155,6 @@ xlab("Number of neighbors") +
 ylab("R squared") + 
 ggtitle("KNN regression - R squared vs Number of Neighors(Normalized)")
 
+=======
+tail(df3)
+>>>>>>> 499b5dae9aac4d680335f9a32d5737c88cee216d
