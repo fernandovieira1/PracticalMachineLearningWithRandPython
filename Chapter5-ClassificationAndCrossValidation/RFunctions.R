@@ -9,7 +9,6 @@ trainTestSplit <- function(df,trainPercent,seed1){
     set.seed(seed1)
     idx <- sample(seq_len(nrow(df)), size = samp_size)
     idx
-    
 }
 
 # Compute the R squared rsquared= 1 - RSS/TSS
